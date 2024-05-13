@@ -53,10 +53,17 @@ pipeline {
         success {
             echo 'Build successful! Artifact generated and published.'
             jacoco(
-                execPattern: '**/build/jacoco/*.exec',
-                classPattern: '**/build/classes/java/main',
-                sourcePattern: '**/src/main'
+                execPattern: 'target/*.exec',
+                classPattern: 'target/classes',
+                sourcePattern: 'src/main/java'
             )
+            publishHTML (target : [allowMissing: false,
+                            alwaysLinkToLastBuild: true,
+                            keepAll: true,
+                            reportDir: 'target/site/jacoco',
+                            reportFiles: 'index.html',
+                            reportName: 'Jacoco',
+                            reportTitles: 'Jacoco Report'])
         }
         failure {
             echo 'Build failed. Check the logs for more information.'
