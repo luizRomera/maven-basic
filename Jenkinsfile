@@ -54,8 +54,8 @@ pipeline {
             echo 'Build successful! Artifact generated and published.'
             jacoco(
                 execPattern: '**/build/jacoco/*.exec',
-                classPattern: '**/build/classes/java/main',
-                sourcePattern: '**/src/main'
+                // classPattern: '**/build/classes/java/main',
+                // sourcePattern: '**/src/main'
             )
         }
         failure {
